@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE Wine & Food | Experiencia Gourmet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oro: #c5a059;
+            --negro-fondo: #0a0a0b;
+            --gris-tarjeta: rgba(255, 255, 255, 0.03);
+            --transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--negro-fondo);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .header-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--oro);
+            letter-spacing: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-tabs { display: flex; gap: 1.2rem; }
+
+        .tab-btn {
+            background: none; border: none;
+            color: #fff; font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem; font-weight: 400;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            cursor: pointer; transition: var(--transicion);
+            opacity: 0.6;
+        }
+
+        .tab-btn.active { opacity: 1; color: var(--oro); }
+
+        .section {
+            padding: 8rem 2rem 5rem;
+            max-width: 1200px; margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden { display: none; }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            text-align: center;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--oro);
+            font-size: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--oro);
+            margin: 4rem 0 1.5rem;
+            display: flex; align-items: center; gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .category-title::after {
+            content: ""; height: 1px; flex-grow: 1;
+            background: linear-gradient(to right, rgba(197, 160, 89, 0.4), transparent);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .menu-item {
+            padding: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transicion);
+        }
+
+        .menu-item:hover { background: var(--gris-tarjeta); border-radius: 4px; }
+
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
+
+        .item-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 500; }
+
+        .item-price { color: var(--oro); font-weight: 300; font-size: 1rem; }
+
+        .item-desc { font-size: 0.8rem; font-weight: 300; color: #999; line-height: 1.4; }
+
+        .map-wrapper {
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            margin-top: 2rem; border: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .map-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;
+            filter: grayscale(1) invert(0.9) contrast(1.2);
+        }
+
+        .btn-cta {
+            display: inline-block; padding: 1rem 2rem;
+            background: transparent; color: var(--oro);
+            border: 1px solid var(--oro);
+            text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.75rem; cursor: pointer;
+            transition: var(--transicion); margin-top: 1rem;
+            text-decoration: none; text-align: center;
+        }
+
+        .btn-cta:hover { background: var(--oro); color: #000; }
+
+        .contact-info { text-align: center; }
+        .contact-info p { margin-bottom: 1.2rem; font-weight: 300; letter-spacing: 1px; }
+
+        .social-links { margin-top: 2.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo" onclick="showTab('inicio')">VIBE</div>
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="inicio">Inicio</button>
+            <button class="tab-btn" data-tab="menu">Carta</button>
+            <button class="tab-btn" data-tab="ubicacion">Ubicación</button>
+            <button class="tab-btn" data-tab="contacto">Reservas</button>
+        </nav>
+    </div>
+</header>
+
+<div id="inicio" class="section">
+    <p class="section-subtitle">San Rafael, Mendoza</p>
+    <h1 class="hero-title">VIBE Wine & Food</h1>
+    <div style="text-align: center;">
+        <button class="btn-cta" onclick="showTab('menu')">Explorar Carta</button>
+    </div>
+</div>
+
+<div id="menu" class="section hidden">
+    <h2 class="hero-title">Nuestra Selección</h2>
+    <p class="section-subtitle">Gastronomía de Autor</p>
+
+    <h3 class="category-title">Entradas</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Papas clásicas o provenzal</span><span class="item-price">$8.500</span></div></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Provoleta a la chapa</span><span class="item-price">$13.500</span></div><p class="item-desc">Con pimientos asados y pan de campo tostado.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Papas ViBe</span><span class="item-price">$9.900</span></div><p class="item-desc">Con cheddar, bacon y verdeo.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Rabas</span><span class="item-price">$18.900</span></div><p class="item-desc">Con aderezo alioli.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Chicken Fingers</span><span class="item-price">$12.500</span></div><p class="item-desc">Con dips de salsas.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Pasteles fritos de carne braseada</span><span class="item-price">$10.500</span></div><p class="item-desc">2 unidades.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Empanadas de chivo y queso</span><span class="item-price">$12.000</span></div><p class="item-desc">2 unidades.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Croquetas de trucha</span><span class="item-price">$16.900</span></div><p class="item-desc">Salsa de zanahoria, cebolla caramelizada, vino blanco y alioli.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Molleja a la chapa</span><span class="item-price">$19.900</span></div><p class="item-desc">Salsa de limón ciboulette y queso crema.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Buñuelos de espinaca</span><span class="item-price">$10.500</span></div><p class="item-desc">Con dip de salsa alioli.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Langostinos apanados</span><span class="item-price">$18.900</span></div><p class="item-desc">Con dip de mayonesa cítrica.</p></div>
+    </div>
+
+    <h3 class="category-title">Tablas</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Tabla de fiambres (p/2)</span><span class="item-price">$29.000</span></div><p class="item-desc">Quesos, jamón ibérico, salame casero, mortadela y salsas.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Tabla de quesos (p/2)</span><span class="item-price">$19.900</span></div><p class="item-desc">Variedad de quesos, aceitunas, tomates secos y mix de frutos secos.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Picoteo especial ViBe (p/3)</span><span class="item-price">$43.000</span></div><p class="item-desc">Empanadas, chicken fingers, buñuelos, papas, quesos y fiambres.</p></div>
+    </div>
+
+    <h3 class="category-title">Ensaladas</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Buena vibra</span><span class="item-price">$17.900</span></div><p class="item-desc">Rucula, peras caramelizadas, queso azul y nueces.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Crispy</span><span class="item-price">$17.900</span></div><p class="item-desc">Mix de verdes, cherrys confitados, escamas de queso, guacamole y pollo crispy.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">César de Pollo</span><span class="item-price">$17.900</span></div><p class="item-desc">Mix de verdes, crutones, láminas de queso, bacon y aderezo césar.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">César Langostinos</span><span class="item-price">$19.900</span></div></div>
+    </div>
+
+    <h3 class="category-title">Pastas Caseras</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Ñoquis rellenos de queso</span><span class="item-price">$17.900</span></div><p class="item-desc">Salsa a elección.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Lasagna XL</span><span class="item-price">$21.900</span></div><p class="item-desc">Salsa bolognesa, espinaca, acelga, jamon y queso.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Fetuccinis al huevo</span><span class="item-price">$17.900</span></div><p class="item-desc">Con salsa roja y albóndigas.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Sorrentinos</span><span class="item-price">$17.900</span></div><p class="item-desc">Salsa a elección (Bolognesa, Crema, Tuco, 4 quesos).</p></div>
+    </div>
+
+    <h3 class="category-title">Principales</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Ojo de bife</span><span class="item-price">$30.500</span></div><p class="item-desc">Con papas domino, mix de verdes y chimichurri.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Entraña</span><span class="item-price">$34.500</span></div><p class="item-desc">Marinada con ensalada de rucula y parmesano.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Trucha salmonada</span><span class="item-price">$26.500</span></div><p class="item-desc">Al ajillo con mix de hojas verdes y bastón de fritas.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">ViBe en Llamas</span><span class="item-price">$50.000</span></div><p class="item-desc">Entrada + CHIVO A LA LLAMA con guarnición + copa de vino o bebida.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Pastel de boniato</span><span class="item-price">$21.900</span></div><p class="item-desc">Puré de boniato sobre carne braseada en cocción lenta.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Milanesa colosal</span><span class="item-price">$23.900</span></div><p class="item-desc">Milanesa XL con papas y huevo frito.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Milanesa de bife de chorizo</span><span class="item-price">$26.900</span></div><p class="item-desc">Napolitana con papas españolas.</p></div>
+    </div>
+
+    <h3 class="category-title">Sándwiches</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Braseado</span><span class="item-price">$19.900</span></div><p class="item-desc">Carne braseada, queso fundido, huevos fritos, lechuga y tomate.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Vegano</span><span class="item-price">$16.500</span></div><p class="item-desc">Medallón de falafel, guacamole, tomate a la chapa, rúcula.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">CHIPA&CRUDO</span><span class="item-price">$16.900</span></div><p class="item-desc">Jamón crudo, rúcula y alioli con pan de chipa.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Lomito Chacarero</span><span class="item-price">$19.900</span></div><p class="item-desc">Bifes de lomo, tomate, lechuga, jamon y huevo en pan árabe.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Smash Burger Gourmet</span><span class="item-price">$16.900</span></div><p class="item-desc">Pepinillos, panceta, cebolla crispy y cheddar.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Smash Burger Clásica</span><span class="item-price">$14.900</span></div><p class="item-desc">Tomate, lechuga, jamón, queso y huevo.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Vacío</span><span class="item-price">$20.000</span></div><p class="item-desc">Salsa criolla, queso fundido en ciabatta de masa madre.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Pollo</span><span class="item-price">$18.900</span></div><p class="item-desc">Tomates, crema de palta y limon en focaccia.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Chori buena vibra</span><span class="item-price">$15.900</span></div><p class="item-desc">Chorizo, queso provolone y chimichurri.</p></div>
+    </div>
+
+    <h3 class="category-title">Bebidas & Jarras</h3>
+    <div class="menu-grid">
+        <div class="menu-item"><div class="item-header"><span class="item-name">Gaseosas (Línea Coca-Cola)</span><span class="item-price">$3.500</span></div></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Agua Mineral / Saborizada</span><span class="item-price">$3.500</span></div></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Limonada / Pomelada natural</span><span class="item-price">$3.900</span></div></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Licuado / Milkshake</span><span class="item-price">$3.900</span></div></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Jugo Detox VIBE</span><span class="item-price">$4.500</span></div></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Jarras Sin Alcohol (1L)</span><span class="item-price">$9.500</span></div><p class="item-desc">Naranjada, Matcha Power, Spritzer de piña.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Jarras Con Alcohol (1L)</span><span class="item-price">$11.500</span></div><p class="item-desc">Tinto de verano, Clericó, Aperolada.</p></div>
+        <div class="menu-item"><div class="item-header"><span class="item-name">Cervezas</span><span class="item-price">$4.500 - $7.700</span></div><p class="item-desc">Heineken, Imperial, Miller, Grolsch.</p></div>
+    </div>
+</div>
+
+<div id="ubicacion" class="section hidden">
+    <h2 class="hero-title">Encontranos</h2>
+    <p class="section-subtitle">San Rafael, Mendoza</p>
+    <div class="contact-info">
+        <p>Cubillos 950, San Rafael</p>
+        <div class="map-wrapper">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.473531065099!2d-68.39763262341253!3d-34.61747865821949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967969e3876f1f3f%3A0x6b061742f6b8627d!2sVIBE!5e0!3m2!1ses!2sar!4v1714400000000!5m2!1ses!2sar" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/kX3Y7V8HqN9W8E7S9" target="_blank" class="btn-cta" style="margin-top: 2rem; display: inline-block;">Cómo llegar</a>
+    </div>
+</div>
+
+<div id="contacto" class="section hidden">
+    <h2 class="hero-title">Reservas</h2>
+    <p class="section-subtitle">¡Viví la experiencia VIBE!</p>
+    <div class="contact-info">
+        <p style="color: var(--oro); font-size: 1.5rem; font-weight: 500;">0260 463-5036</p>
+        <div class="social-links">
+            <a href="https://wa.me/542604635036" target="_blank" class="btn-cta">WhatsApp para Reservas</a>
+            <a href="https://www.instagram.com/vibe.wineandfood/" target="_blank" class="btn-cta">Seguinos en Instagram</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.tab;
+            showTab(target);
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    function showTab(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+</script>
+
+</body>
+</html>
